@@ -41,6 +41,7 @@ class Chewie extends StatefulWidget {
 
 class ChewieState extends State<Chewie> {
   bool _isFullScreen = false;
+  late bool _hideStuff = widget.controller.showControls;
 
   bool get isControllerFullScreen => widget.controller.isFullScreen;
   late PlayerNotifier notifier;
@@ -80,6 +81,11 @@ class ChewieState extends State<Chewie> {
         rootNavigator: widget.controller.useRootNavigator,
       ).pop();
       _isFullScreen = false;
+    }
+
+    if (_hideStuff != widget.controller.showControls) {
+      _hideStuff = widget.controller.showControls;
+      notifier.hideStuff = _hideStuff;
     }
   }
 
