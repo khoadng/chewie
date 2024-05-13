@@ -465,7 +465,7 @@ class ChewieController extends ChangeNotifier {
   final bool showControlsOnInitialize;
 
   /// Whether or not to show the controls at all
-  final bool showControls;
+  late bool showControls;
 
   /// Controller to pass into the [InteractiveViewer] component
   final TransformationController? transformationController;
@@ -598,6 +598,11 @@ class ChewieController extends ChangeNotifier {
       enterFullScreen();
       videoPlayerController.removeListener(_fullScreenListener);
     }
+  }
+
+  void setControlsVisibility(bool isVisible) {
+    showControls = isVisible;
+    notifyListeners();
   }
 
   void enterFullScreen() {
